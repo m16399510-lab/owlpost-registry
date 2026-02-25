@@ -32,7 +32,9 @@
 }
 
 /* === Reset & Base === */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -69,8 +71,13 @@ body::before {
 }
 
 @keyframes bgShift {
-    0% { opacity: 0.8; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 /* Floating particles */
@@ -94,8 +101,15 @@ body::after {
 }
 
 @keyframes sparkle {
-    0% { transform: translateY(0); opacity: 0.6; }
-    100% { transform: translateY(-15px); opacity: 1; }
+    0% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-15px);
+        opacity: 1;
+    }
 }
 
 /* === Container === */
@@ -125,8 +139,15 @@ body::after {
 }
 
 @keyframes owlFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 .page-header h1 {
@@ -232,8 +253,15 @@ body::after {
 }
 
 @keyframes slideIn {
-    from { opacity: 0; transform: translateX(-10px); }
-    to { opacity: 1; transform: translateX(0); }
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .uid-row .form-input {
@@ -420,9 +448,17 @@ body::after {
 }
 
 @keyframes checkBounce {
-    0% { transform: scale(0); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .success-overlay h2 {
@@ -612,7 +648,9 @@ body::after {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .loading-overlay {
@@ -641,7 +679,9 @@ body::after {
 
 /* === Responsive === */
 @media (max-width: 640px) {
-    .container, .container-wide {
+
+    .container,
+    .container-wide {
         padding: 24px 16px;
     }
 
@@ -696,19 +736,15 @@ body::after {
     height: 100%;
     background: rgba(10, 8, 18, 0.85);
     backdrop-filter: blur(8px);
-    display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+    display: none;
     padding: 20px;
 }
 
 .modal-overlay.show {
-    opacity: 1;
-    pointer-events: auto;
+    display: flex;
 }
 
 .modal-card {
@@ -884,4 +920,3 @@ body::after {
         width: 100%;
     }
 }
-
