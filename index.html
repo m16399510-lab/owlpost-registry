@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Owlpost 学籍登记</title>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/owl.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="page-header">
+            <span class="owl-icon">🦉</span>
+            <h1>OWLPOST 学籍登记</h1>
+            <p class="subtitle">猫头鹰邮局 · 新生入学登记处</p>
+        </header>
+
+        <!-- Registration Form -->
+        <div class="card">
+            <form id="registrationForm" autocomplete="off">
+                <!-- Nickname -->
+                <div class="form-group">
+                    <label>
+                        昵称
+                        <span class="label-hint">大家一般怎么称呼你？</span>
+                    </label>
+                    <input type="text" class="form-input" id="nickname"
+                           placeholder="输入你的昵称" required maxlength="50">
+                </div>
+
+                <!-- QQ Number -->
+                <div class="form-group">
+                    <label>
+                        QQ号
+                    </label>
+                    <input type="text" class="form-input" id="qqNumber"
+                           placeholder="输入你的QQ号" required pattern="[0-9]+"
+                           inputmode="numeric" maxlength="15">
+                </div>
+
+                <!-- UIDs -->
+                <div class="form-group">
+                    <label>
+                        用户UID
+                        <span class="label-hint">可在游戏设置页面中查看</span>
+                    </label>
+                    <div class="uid-list" id="uidList">
+                        <div class="uid-row" data-index="0">
+                            <span class="uid-index">1</span>
+                            <input type="text" class="form-input uid-input"
+                                   placeholder="输入UID" required>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-add" id="addUidBtn">
+                        ＋ 添加更多UID
+                    </button>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <span id="submitText">📜 提交登记</span>
+                    <span id="submitSpinner" class="spinner" style="display:none;"></span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            Owlpost · 猫头鹰邮局
+        </footer>
+    </div>
+
+    <!-- Success Overlay -->
+    <div class="success-overlay" id="successOverlay">
+        <span class="check-icon">✨</span>
+        <h2>登记成功！</h2>
+        <p>你的学籍信息已成功提交</p>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/registration.js"></script>
+</body>
+</html>

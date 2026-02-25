@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Owlpost 学籍登记 - 管理后台</title>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/owl.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- ===== Login View ===== -->
+    <div id="loginView">
+        <div class="container">
+            <header class="page-header">
+                <span class="owl-icon">🦉</span>
+                <h1>管理后台</h1>
+                <p class="subtitle">Owlpost · 学籍登记管理系统</p>
+            </header>
+
+            <div class="card login-card">
+                <form id="loginForm" autocomplete="off">
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input type="text" class="form-input" id="adminUsername" placeholder="输入管理员用户名" required>
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" class="form-input" id="adminPassword" placeholder="输入管理密码" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="loginBtn">
+                        <span id="loginText">🔑 登录</span>
+                        <span id="loginSpinner" class="spinner" style="display:none;"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Dashboard View ===== -->
+    <div id="dashboardView" style="display:none;">
+        <div class="container-wide">
+            <header class="page-header">
+                <span class="owl-icon">🦉</span>
+                <h1>学籍管理后台</h1>
+                <p class="subtitle">实时查看注册用户与订阅状态</p>
+            </header>
+
+            <!-- Stats -->
+            <div class="stats-row" id="statsRow">
+                <div class="stat-card">
+                    <div class="stat-value" id="statTotal">-</div>
+                    <div class="stat-label">总注册</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statActive">-</div>
+                    <div class="stat-label">正式用户</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statTrial">-</div>
+                    <div class="stat-label">试用中</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statExpired">-</div>
+                    <div class="stat-label">已过期</div>
+                </div>
+            </div>
+
+            <!-- Search & Refresh -->
+            <div class="search-bar">
+                <input type="text" class="form-input" id="searchInput" placeholder="🔍 搜索昵称 / QQ号 / UID ...">
+                <button class="btn btn-secondary" id="refreshBtn">🔄 刷新数据</button>
+            </div>
+
+            <!-- Data Area -->
+            <div id="dataArea">
+                <div class="loading-overlay" id="loadingArea">
+                    <span class="spinner"></span>
+                    <span>正在加载数据...</span>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="page-footer">
+                Owlpost · 管理后台
+            </footer>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
