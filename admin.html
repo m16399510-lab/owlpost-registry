@@ -67,9 +67,10 @@
                 </div>
             </div>
 
-            <!-- Search & Refresh -->
+            <!-- Search & Actions -->
             <div class="search-bar">
                 <input type="text" class="form-input" id="searchInput" placeholder="🔍 搜索昵称 / QQ号 / UID ...">
+                <button class="btn btn-secondary" id="dupCheckBtn">🔍 一键查重</button>
                 <button class="btn btn-secondary" id="refreshBtn">🔄 刷新数据</button>
             </div>
 
@@ -85,6 +86,57 @@
             <footer class="page-footer">
                 Owlpost · 管理后台
             </footer>
+        </div>
+    </div>
+
+    <!-- ===== Edit Modal ===== -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>✏️ 编辑记录</h3>
+                <button class="btn btn-icon modal-close" id="editModalClose">✕</button>
+            </div>
+            <form id="editForm" autocomplete="off">
+                <div class="form-group">
+                    <label>昵称</label>
+                    <input type="text" class="form-input" id="editNickname" required maxlength="50">
+                </div>
+                <div class="form-group">
+                    <label>QQ号</label>
+                    <input type="text" class="form-input" id="editQqNumber" required pattern="[0-9]+"
+                           inputmode="numeric" maxlength="15">
+                </div>
+                <div class="form-group">
+                    <label>用户UID</label>
+                    <div class="uid-list" id="editUidList"></div>
+                    <button type="button" class="btn btn-add" id="editAddUidBtn">＋ 添加更多UID</button>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="editCancelBtn">取消</button>
+                    <button type="submit" class="btn btn-primary modal-submit-btn" id="editSaveBtn">
+                        <span id="editSaveText">💾 保存</span>
+                        <span id="editSaveSpinner" class="spinner" style="display:none;"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== Delete Confirm Modal ===== -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-card modal-card-sm">
+            <div class="modal-header">
+                <h3>⚠️ 确认删除</h3>
+                <button class="btn btn-icon modal-close" id="deleteModalClose">✕</button>
+            </div>
+            <p class="modal-body-text">确定要删除 <strong id="deleteTargetName"></strong> 的登记记录吗？此操作无法撤销。</p>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" id="deleteCancelBtn">取消</button>
+                <button type="button" class="btn btn-danger" id="deleteConfirmBtn">
+                    <span id="deleteConfirmText">🗑️ 确认删除</span>
+                    <span id="deleteConfirmSpinner" class="spinner" style="display:none;"></span>
+                </button>
+            </div>
         </div>
     </div>
 

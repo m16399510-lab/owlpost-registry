@@ -89,7 +89,7 @@
             return;
         }
 
-        // Check duplicates
+        // Check local duplicates
         const uniqueUids = [...new Set(uids)];
         if (uniqueUids.length !== uids.length) {
             showToast('存在重复的UID，请检查', 'error');
@@ -100,6 +100,37 @@
         setLoading(true);
 
         try {
+            // === 远程查重 ===
+            const { data: dupResult, error: dupError } = await db.rpc('check_duplicate', {
+                p_qq_number: qqNumber,
+                p_uids: uniqueUids
+            });
+
+            if (dupError) {
+                console.error('查重请求失败:', dupError);
+                showToast('查重请求失败：' + dupError.message, 'error');
+                setLoading(false);
+                return;
+            }
+
+            if (dupResult && dupResult.duplicate) {
+                if (dupResult.qq_exists) {
+                    showToast('该QQ号已登记过，请勿重复提交', 'error');
+                    setLoading(false);
+                    return;
+                }
+                if (dupResult.duplicate_uids && dupResult.duplicate_uids.length > 0) {
+                    showToast('以下UID已被其他用户登记：' + dupResult.duplicate_uids.join('、'), 'error');
+                    setLoading(false);
+                    return;
+                }
+                // Fallback: generic duplicate message
+                showToast('存在重复信息，请检查QQ号和UID', 'error');
+                setLoading(false);
+                return;
+            }
+
+            // === 无重复，执行插入 ===
             const { error } = await db
                 .from('student_registry')
                 .insert({
