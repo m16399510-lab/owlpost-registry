@@ -203,6 +203,11 @@
         // If account_status exists and is not normal
         const accountStatus = uidDetail.account_status;
         if (accountStatus === 'suspended' || accountStatus === 'banned') {
+            const endDate = uidDetail.subscription_end_date;
+            if (endDate) {
+                const dateStr = new Date(endDate).toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
+                return { type: 'suspended', label: `已停用（${dateStr}）`, icon: '🚫' };
+            }
             return { type: 'suspended', label: '已停用', icon: '🚫' };
         }
 
